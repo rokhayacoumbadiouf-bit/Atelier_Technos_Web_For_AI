@@ -6,20 +6,23 @@
     <title>AI_WORKSPACE</title>
 </head>
 <body>
-    <nav>
+    <header>
         <p>AI Workspace</p>
         <p><a>Admin User</a></p>
-    </nav>
+    </header>
+    <nav>
     <aside>
         <ul>
-            <li> Tableau de bord </li>
-            <li> Chat </li>
-            <li> Résumé de texte </li>
-            <li> Classification </li>
-            <li> Traduction </li>
-            <li> Historique </li>
+            <li><a href="#"> Tableau de bord </a></li>
+            <li><a href="#"> Chat </a></li>
+            <li><a href="#"> Résumé de texte </a></li>
+            <li><a href="#"> Classification </a></li>
+            <li><a href="#"> Traduction </a></li>
+            <li><a href="#"> Historique </a></li>
         </ul>
     </aside>
+    </nav>
+    <main>
     <section>
         <h1>Tableau de bord</h1>
         <p> Bienvenue dans votre espace de travail intelligent </p>
@@ -55,11 +58,11 @@
     <div> 
         <p>Requêtes par jour </p>
         <p>7 derniers jours</p>
-        <img src="AI_Workspace\Images\requêtes_par_jour.jpeg" alt="requêtes par jour ">
+        <img src="Images/requêtes_par_jour.PNG" alt="requêtes par jour ">
     </div>
     <div>
         <p>Repartition des requêtes par service</p>
-        <img src="AI_Workspace\Images\repartition_des_requêtes_par_secteurs.jpeg" alt="requêtes par secteur">
+        <img src="Images/repartition_des_requêtes_par_secteurs.PNG" alt="requêtes par secteur">
     </div>
     </section>
 
@@ -67,14 +70,14 @@
         <div>
             <table>
                 <tr>
-                    <td><strong>Activité récente</strong></td>
+                    <th>Activité récente</th>
                 </tr>
-                <tr>
+                <th>
                     <td>Activité</td>
                     <td>Sercive</td>
                     <td>Utilisateur</td>
                     <td>Date</td>
-                </tr>
+                </th>
                 <tr>
                     <td>Résumé du document_projet.pdf</td>
                     <td>Résumé de texte</td>
@@ -109,11 +112,11 @@
         </div>
         <div>
             <table>
-                <tr><strong>Modèles Populaires</strong></tr>
-                <tr>
+                <th></th>Modèles Populaires</th>
+                <th>
                     <td>Modèle</td>
                     <td>Utilisation</td>
-                </tr>
+                </th>
                 <tr>
                     <td>mistral-7b-instruct</td>
                     <td>532</td>
@@ -137,5 +140,6 @@
             </table>
         </div>
     </section>
+    </main>
 </body>
 </html>
