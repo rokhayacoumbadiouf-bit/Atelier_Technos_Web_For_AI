@@ -1,145 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI_WORKSPACE</title>
+    <title>AI Workspace</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <p>AI Workspace</p>
-        <p><a>Admin User</a></p>
+    <header class="topbar">
+        <p class="topbar-title">AI Workspace</p>
+        <a href="#" class="user-menu">Admin User</a>
     </header>
-    <nav>
-    <aside>
-        <ul>
-            <li><a href="#"> Tableau de bord </a></li>
-            <li><a href="#"> Chat </a></li>
-            <li><a href="#"> Résumé de texte </a></li>
-            <li><a href="#"> Classification </a></li>
-            <li><a href="#"> Traduction </a></li>
-            <li><a href="#"> Historique </a></li>
-        </ul>
-    </aside>
-    </nav>
-    <main>
-    <section>
-        <h1>Tableau de bord</h1>
-        <p> Bienvenue dans votre espace de travail intelligent </p>
-    </section>
-    <section>
-        <div>
-            <p> Nombre de jeu de données </p>
-            <p>24</p>
-            <p>+3 ce mois ci</p>
-        </div>
-         <div>
-            <p> Nombre de requêtes </p>
-            <p>1,256</p>
-            <p>+18% ce mois ci</p>
-        </div>
-         <div>
-            <p> Nombre de modèles disponible </p>
-            <p>12</p>
-            <p>+2 ce mois ci</p>
-         </div>
-         <div>
-            <p> Utilisateurs Actifs </p>
-            <p>8</p>
-            <p>+2 ce mois ci</p>
-        </div>
-         <div>
-            <p> Tâches exécutées </p>
-            <p>342</p>
-            <p>+22% ce mois ci</p>
-        </div>
-    </section>
-    <section>
-    <div> 
-        <p>Requêtes par jour </p>
-        <p>7 derniers jours</p>
-        <img src="Images/requêtes_par_jour.PNG" alt="requêtes par jour ">
-    </div>
-    <div>
-        <p>Repartition des requêtes par service</p>
-        <img src="Images/repartition_des_requêtes_par_secteurs.PNG" alt="requêtes par secteur">
-    </div>
-    </section>
 
-    <section>
-        <div>
-            <table>
-                <tr>
-                    <th>Activité récente</th>
-                </tr>
-                <th>
-                    <td>Activité</td>
-                    <td>Sercive</td>
-                    <td>Utilisateur</td>
-                    <td>Date</td>
-                </th>
-                <tr>
-                    <td>Résumé du document_projet.pdf</td>
-                    <td>Résumé de texte</td>
-                    <td>Admin User</td>
-                    <td>21/05/2024 14:32</td>
-                </tr>
-                <tr>
-                    <td>Classification de sentiments</td>
-                    <td>Classification</td>
-                    <td>Admin User</td>
-                    <td>21/05/2024 14:21</td>
-                </tr>
-                <tr>
-                    <td>Traduction Fr->Eng</td>
-                    <td>Traduction</td>
-                    <td>Admin User</td>
-                    <td>21/05/2024 14:15</td>
-                </tr>
-                <tr>
-                    <td>Discussion sur l'IA générative</td>
-                    <td>Chat</td>
-                    <td>Admin User</td>
-                    <td>21/05/2024 14:05</td>
-                </tr>
-                <tr>
-                    <td>Génération d'Idées de projet</td>
-                    <td>Idées</td>
-                    <td>Admin User</td>
-                    <td>21/05/2024 13:30</td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <table>
-                <th></th>Modèles Populaires</th>
-                <th>
-                    <td>Modèle</td>
-                    <td>Utilisation</td>
-                </th>
-                <tr>
-                    <td>mistral-7b-instruct</td>
-                    <td>532</td>
-                </tr>
-                <tr>
-                    <td>gpt-4-turbo</td>
-                    <td>389</td>
-                </tr>
-                <tr>
-                   <td>llama-3-8b</td> 
-                   <td>256</td>
-                </tr>
-                <tr>
-                    <td>bert-base-incased</td>
-                    <td>179</td>
-                </tr>
-                <tr>
-                    <td>google-translate-v1</td>
-                    <td>142</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-    </main>
+    <div class="layout">
+        <aside class="sidebar">
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" class="menu-link active" data-page="dashboard">Tableau de bord</a></li>
+                    <li><a href="#" class="menu-link" data-page="chat">Chat</a></li>
+                    <li><a href="#" class="menu-link" data-page="resume">Résumé de texte</a></li>
+                    <li><a href="#" class="menu-link" data-page="classification">Classification</a></li>
+                    <li><a href="#" class="menu-link" data-page="traduction">Traduction</a></li>
+                    <li><a href="#" class="menu-link" data-page="historique">Historique</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+
+
+            <section id="dashboard" class="page active">
+                <h1>Tableau de bord</h1>
+                <p>Bienvenue dans votre espace de travail intelligent</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <p class="stat-label">Nombre de jeux de données</p>
+                        <p class="stat-value">24</p>
+                        <p class="stat-delta">+3 ce mois-ci</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Nombre de requêtes</p>
+                        <p class="stat-value">1,256</p>
+                        <p class="stat-delta">+18% ce mois-ci</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Nombre de modèles disponibles</p>
+                        <p class="stat-value">12</p>
+                        <p class="stat-delta">+2 ce mois-ci</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Utilisateurs actifs</p>
+                        <p class="stat-value">8</p>
+                        <p class="stat-delta">+2 ce mois-ci</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Tâches exécutées</p>
+                        <p class="stat-value">342</p>
+                        <p class="stat-delta">+22% ce mois-ci</p>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <p class="chart-title">Requêtes par jour</p>
+                        <p class="chart-subtitle">7 derniers jours</p>
+                        <img src="images/requêtes_par_jour.PNG" alt="Requêtes par jour">
+                    </div>
+                    <div class="chart-card">
+                        <p class="chart-title">Répartition des requêtes par service</p>
+                        <img src="images/repartition_des_requêtes_par_secteurs.PNG" alt="Répartition par secteur">
+                    </div>
+                </div>
+
+                <div class="tables-row">
+                    <div class="table-card">
+                        <table>
+                            <tr>
+                                <th colspan="4">Activité récente</th>
+                            </tr>
+                            <tr>
+                                <th>Activité</th>
+                                <th>Service</th>
+                                <th>Utilisateur</th>
+                                <th>Date</th>
+                            </tr>
+                            <tr>
+                                <td>Résumé du document_projet.pdf</td>
+                                <td>Résumé de texte</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:32</td>
+                            </tr>
+                            <tr>
+                                <td>Classification de sentiments</td>
+                                <td>Classification</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:21</td>
+                            </tr>
+                            <tr>
+                                <td>Traduction Fr → Eng</td>
+                                <td>Traduction</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:15</td>
+                            </tr>
+                            <tr>
+                                <td>Discussion sur l'IA générative</td>
+                                <td>Chat</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:05</td>
+                            </tr>
+                            <tr>
+                                <td>Génération d'idées de projet</td>
+                                <td>Idées</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 13:30</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="table-card">
+                        <table>
+                            <tr>
+                                <th colspan="2">Modèles populaires</th>
+                            </tr>
+                            <tr>
+                                <th>Modèle</th>
+                                <th>Utilisation</th>
+                            </tr>
+                            <tr>
+                                <td>mistral-7b-instruct</td>
+                                <td>532</td>
+                            </tr>
+                            <tr>
+                                <td>gpt-4-turbo</td>
+                                <td>389</td>
+                            </tr>
+                            <tr>
+                                <td>llama-3-8b</td>
+                                <td>256</td>
+                            </tr>
+                            <tr>
+                                <td>bert-base-uncased</td>
+                                <td>179</td>
+                            </tr>
+                            <tr>
+                                <td>google-translate-v1</td>
+                                <td>142</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
