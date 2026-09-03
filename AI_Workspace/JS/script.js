@@ -42,6 +42,8 @@ function createPage(page) {
         buildResumePage(section);
     }else if(page==='traduction'){
         buildTraductionPage(section);
+    }else if (page==='chat'){
+        buildChatAIPage(section);
     }
     
 
@@ -139,4 +141,54 @@ function buildTraductionPage(section) {
 
 function simulateTraduction(text, langue) {
     return `[Traduction simulée en ${langue}] : ${text}`;
+}
+
+function buildChatAIPage(section) {
+    const title = document.createElement('h1');
+    title.textContent = 'Chat IA';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'chat-input';
+    input.placeholder = 'Écrivez votre message...';
+
+    const button = document.createElement('button');
+    button.textContent = 'Envoyer';
+    button.id = 'chat-btn';
+
+    const output = document.createElement('div');
+    output.id = 'chat-output';
+    output.classList.add('output-box');
+
+    button.addEventListener('click', () => {
+        const text = input.value.trim();
+
+        if (text === '') {
+            return; 
+        }
+
+        
+        const userMsg = document.createElement('p');
+        userMsg.classList.add('chat-user');
+        userMsg.textContent = 'Vous : ' + text;
+        output.appendChild(userMsg);
+
+      
+        const aiMsg = document.createElement('p');
+        aiMsg.classList.add('chat-ai');
+        aiMsg.textContent = 'IA : ' + simulateChatResponse(text);
+        output.appendChild(aiMsg);
+
+        
+        input.value = '';
+    });
+
+    section.appendChild(title);
+    section.appendChild(input);
+    section.appendChild(button);
+    section.appendChild(output);
+}
+
+function simulateChatResponse(text) {
+    return "Voici une réponse  à votre message : \"" + text + "\"";
 }
