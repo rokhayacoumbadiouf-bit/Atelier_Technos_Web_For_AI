@@ -44,7 +44,8 @@ function createPage(page) {
         buildTraductionPage(section);
     }else if (page==='chat'){
         buildChatAIPage(section);
-    }
+    }else if (page==='classification')
+        buildPredictionPage(section);
     
 
     return section;
@@ -191,4 +192,67 @@ function buildChatAIPage(section) {
 
 function simulateChatResponse(text) {
     return "Voici une réponse  à votre message : \"" + text + "\"";
+}
+
+
+function buildPredictionPage(section) {
+    const title = document.createElement('h1');
+    title.textContent = 'Prédiction';
+
+    const ageInput = document.createElement('input');
+    ageInput.type = 'number';
+    ageInput.id = 'predict-age';
+    ageInput.placeholder = 'Âge';
+
+    const revenuInput = document.createElement('input');
+    revenuInput.type = 'number';
+    revenuInput.id = 'predict-revenu';
+    revenuInput.placeholder = 'Revenu';
+
+    const villeInput = document.createElement('input');
+    villeInput.type = 'text';
+    villeInput.id = 'predict-ville';
+    villeInput.placeholder = 'Ville';
+
+    const button = document.createElement('button');
+    button.textContent = 'Prédire';
+    button.id = 'predict-btn';
+
+    const output = document.createElement('div');
+    output.id = 'predict-output';
+    output.classList.add('output-box');
+
+    button.addEventListener('click', () => {
+        const age = ageInput.value.trim();
+        const revenu = revenuInput.value.trim();
+        const ville = villeInput.value.trim();
+
+        if (age === '' || revenu === '' || ville === '') {
+            output.textContent = 'Veuillez remplir tous les champs avant de prédire.';
+            return;
+        }
+
+        output.textContent = simulatePrediction(Number(age), Number(revenu), ville);
+    });
+
+    section.appendChild(title);
+    section.appendChild(ageInput);
+    section.appendChild(revenuInput);
+    section.appendChild(villeInput);
+    section.appendChild(button);
+    section.appendChild(output);
+}
+
+function simulatePrediction(age, revenu, ville) {
+    let profil;
+
+    if (age < 30 && revenu > 500000) {
+        profil = 'jeune actif à fort potentiel';
+    } else if (age >= 30 && age < 50) {
+        profil = 'profil stable';
+    } else {
+        profil = 'profil à surveiller';
+    }
+
+    return `D'après votre profil (âge ${age}, revenu ${revenu}, ville ${ville}), la prédiction est : ${profil}.`;
 }
