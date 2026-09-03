@@ -44,8 +44,12 @@ function createPage(page) {
         buildTraductionPage(section);
     }else if (page==='chat'){
         buildChatAIPage(section);
-    }else if (page==='classification')
+    }else if (page==='classification'){
         buildPredictionPage(section);
+    }else if (page==='historique'){
+        buildHistoriquePage(section)
+    }
+
     
 
     return section;
@@ -78,6 +82,9 @@ function buildResumePage(section) {
         }
 
         output.textContent = simulateResume(text);
+
+        saveToHistory('Résumé de texte', text, resultat); 
+
     });
 
     section.appendChild(title);
@@ -131,6 +138,9 @@ function buildTraductionPage(section) {
         }
 
         output.textContent = simulateTraduction(text, langue);
+
+        saveToHistory('Résumé de texte', text, langue); 
+
     });
 
     section.appendChild(title);
@@ -247,12 +257,116 @@ function simulatePrediction(age, revenu, ville) {
     let profil;
 
     if (age < 30 && revenu > 500000) {
-        profil = 'jeune actif à fort potentiel';
+        profil = 'jeune actif a fort potentiel';
     } else if (age >= 30 && age < 50) {
         profil = 'profil stable';
     } else {
         profil = 'profil à surveiller';
     }
 
-    return `D'après votre profil (âge ${age}, revenu ${revenu}, ville ${ville}), la prédiction est : ${profil}.`;
+    return `D'aprés votre profil (âge ${age}, revenu ${revenu}, ville ${ville}), la prédiction est : ${profil}.`;
+}
+
+
+const HISTORY_KEY = 'ai-workspace-history';
+
+function saveToHistory(module, requete, resultat) {
+    const historique = getHistory();
+
+    historique.push({
+        id: Date.now(), 
+        module: module,
+        requete: requete,
+        resultat: resultat,
+        date: new Date().toLocaleString('fr-FR')
+    });
+
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(historique));
+}
+
+function getHistory() {
+    const data = localStorage.getItem(HISTORY_KEY);
+    return data ? JSON.parse(data) : [];
+}
+
+function deleteHistoryEntry(id) {
+    const historique = getHistory().filter(entry => entry.id !== id);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(historique));
+}
+
+function clearHistory() {
+    localStorage.removeItem(HISTORY_KEY);
+}
+
+
+function buildHistoriquePage(section) {
+    const title = document.createElement('h1');
+    title.textContent = 'Historique';
+
+    const searchInput = document.createElement('input');
+    searchInput.type = 'text';
+    searchInput.id = 'historique-search';
+    searchInput.placeholder = 'Rechercher dans l\'historique...';
+
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'Vider l\'historique';
+    clearButton.id = 'historique-clear';
+
+    const list = document.createElement('div');
+    list.id = 'historique-list';
+
+    function renderList(filter = '') {
+        list.innerHTML = ''; 
+
+        const historique = getHistory()
+            .filter(entry =>
+                entry.module.toLowerCase().includes(filter.toLowerCase()) ||
+                entry.requete.toLowerCase().includes(filter.toLowerCase())
+            )
+            .reverse(); 
+
+        if (historique.length === 0) {
+            const empty = document.createElement('p');
+            empty.textContent = 'Aucune entrée dans l\'historique.';
+            list.appendChild(empty);
+            return;
+        }
+
+        historique.forEach(entry => {
+            const item = document.createElement('div');
+            item.classList.add('historique-item');
+
+            const infos = document.createElement('p');
+            infos.innerHTML = `<strong>${entry.module}</strong> — ${entry.date}<br>
+                                Requête : ${entry.requete}<br>
+                                Résultat : ${entry.resultat}`;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Supprimer';
+            deleteBtn.addEventListener('click', () => {
+                deleteHistoryEntry(entry.id);
+                renderList(searchInput.value);
+            });
+
+            item.appendChild(infos);
+            item.appendChild(deleteBtn);
+            list.appendChild(item);
+        });
+    }
+
+    searchInput.addEventListener('input', () => {
+        renderList(searchInput.value);
+    });
+
+    clearButton.addEventListener('click', () => {
+        clearHistory();
+        renderList();
+    });
+
+    section.appendChild(title);
+    section.appendChild(searchInput);
+    section.appendChild(clearButton);
+    section.appendChild(list);
+
+    renderList(); 
 }
