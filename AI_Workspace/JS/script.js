@@ -40,6 +40,8 @@ function createPage(page) {
 
     if (page === 'resume') {
         buildResumePage(section);
+    }else if(page==='traduction'){
+        buildTraductionPage(section);
     }
     
 
@@ -86,4 +88,55 @@ function simulateResume(text) {
     const words = text.split(/\s+/);
     const short = words.slice(0, 20).join(' ');
     return short + (words.length > 20 ? '...' : '');
+}
+
+function buildTraductionPage(section) {
+    const title = document.createElement('h1');
+    title.textContent = 'Traduction';
+
+    const textarea = document.createElement('textarea');
+    textarea.id = 'traduction-input';
+    textarea.placeholder = 'Saisissez le texte à traduire...';
+    textarea.rows = 8;
+
+    const select = document.createElement('select');
+    select.id = 'traduction-langue';
+
+    const langues = ['Anglais', 'Espagnol', 'Allemand', 'Italien', 'Arabe'];
+    langues.forEach(langue => {
+        const option = document.createElement('option');
+        option.value = langue;
+        option.textContent = langue;
+        select.appendChild(option);
+    });
+
+    const button = document.createElement('button');
+    button.textContent = 'Traduire';
+    button.id = 'traduction-btn';
+
+    const output = document.createElement('div');
+    output.id = 'traduction-output';
+    output.classList.add('output-box');
+
+    button.addEventListener('click', () => {
+        const text = textarea.value.trim();
+        const langue = select.value;
+
+        if (text === '') {
+            output.textContent = 'Veuillez saisir un texte avant de traduire.';
+            return;
+        }
+
+        output.textContent = simulateTraduction(text, langue);
+    });
+
+    section.appendChild(title);
+    section.appendChild(textarea);
+    section.appendChild(select);
+    section.appendChild(button);
+    section.appendChild(output);
+}
+
+function simulateTraduction(text, langue) {
+    return `[Traduction simulée en ${langue}] : ${text}`;
 }
