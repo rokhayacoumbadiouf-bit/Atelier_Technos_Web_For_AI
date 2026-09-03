@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +28,7 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -46,7 +46,7 @@ table {
 
 .layout {
     display: flex;
-    min-height: calc(100vh - 56px); 
+    min-height: calc(100vh - 56px);
 }
 
 .sidebar {
@@ -84,6 +84,10 @@ table {
 
 .page.active {
     display: block;
+}
+
+.page h1 {
+    margin-bottom: 1rem;
 }
 
 
@@ -171,4 +175,142 @@ table {
 .table-card tr:first-child th {
     font-size: 0.95rem;
     border-bottom: 2px solid #e5e7eb;
+}
+
+
+/* ---------- Formulaires (Résumé, Traduction, Chat, Classification) ---------- */
+
+textarea,
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    max-width: 480px;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    display: block;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+}
+
+button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #4f46e5;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+button:hover {
+    background-color: #4338ca;
+}
+
+.output-box {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 3rem;
+    white-space: pre-wrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ---------- Chat IA ---------- */
+
+#chat-input {
+    display: inline-block;
+    width: 70%;
+    margin-right: 0.5rem;
+    vertical-align: top;
+}
+
+#chat-btn {
+    display: inline-block;
+}
+
+#chat-output {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.chat-user,
+.chat-ai {
+    max-width: 75%;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.chat-user {
+    align-self: flex-end;
+    background-color: #4f46e5;
+    color: #ffffff;
+}
+
+.chat-ai {
+    align-self: flex-start;
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+
+/* ---------- Historique ---------- */
+
+#historique-search {
+    display: inline-block;
+    width: 60%;
+    margin-right: 0.5rem;
+}
+
+#historique-clear {
+    background-color: #dc2626;
+}
+
+#historique-clear:hover {
+    background-color: #b91c1c;
+}
+
+.historique-item {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.historique-item p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.historique-item button {
+    background-color: #dc2626;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.historique-item button:hover {
+    background-color: #b91c1c;
 }
